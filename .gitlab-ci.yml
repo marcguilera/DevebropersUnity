@@ -1,0 +1,54 @@
+cache:
+  paths:
+    - node_modules/
+    - app/bower_components
+    - Assemblies/DLLs/3rd Party
+
+# Stages
+stages:
+  - build
+  - tests
+  - firebase
+
+build:
+  stage: build
+  image: mono
+  retry: 2
+  artifacts:
+    paths:
+      - Assemblies/DLLs
+    expire_in: 1 week
+  script:
+    - cd Assemblies
+    - find . -type f -name packages.config -exec sh -c 'nuget restore {}' \;
+    - cd ..
+    - cd Scripts
+    - chmod 777 build
+    - ./build Release
+
+tests:
+  stage: tests
+  image: fela98/mono-nunit
+  retry: 2
+  when: on_success
+  dependencies: 
+    - build
+  script:
+    - apt-get update && apt-get install libxml2-utils
+    - find / -type f -name *.Tests.Unit.csproj -exec sh -c 'xbuild /p:Configuration=Release "{}"' \;
+    - find / -type f -name *.Tests.Unit.dll -exec sh -c 'mono /nunit/nunit3-console.exe {}' \;
+    - result=$(xmllint --xpath "string(//test-run/@result)" TestResult.xml)
+    - '[[ $result == "Passed" ]] && echo "Tests Passed" || exit 42'
+
+firebase:
+  stage: firebase
+  image: devillex/docker-firebase
+  retry: 2
+  when: on_success
+  script:
+    - cd Firebase
+    - cd functions
+    - npm install
+    - cd ..
+    - firebase use --token $FIREBASE_DEPLOY_KEY
+    - firebase deploy -m "Pipeline $CI_PIPELINE_ID, build $CI_BUILD_ID" --non-interactive --token $FIREBASE_DEPLOY_KEY

@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CDA06220-78FF-42E1-A14B-B16723C5F195}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Devebropers.Storage.Remote</RootNamespace>
+    <AssemblyName>Devebropers.Storage.Remote</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Devebropers.Storage.Remote.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DocumentationFile>bin\Release\Devebropers.Storage.Remote.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Reactive.Core" />
+    <Reference Include="System.Reactive.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Firebase.Storage">
+      <HintPath>..\..\DLLs\3rd Party\Firebase\Firebase.Storage.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Devebropers.Common\Devebropers.Common.csproj" />
+    <ProjectReference Include="..\..\Domains\Devebropers.Domains\Devebropers.Domains.csproj" />
+    <ProjectReference Include="..\..\Firebase\Devebropers.Firebase.Storage\Devebropers.Firebase.Storage.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Deletions\Implementation\Deleter.cs" />
+    <Compile Include="Deletions\Interfaces\IDeleter.cs" />
+    <Compile Include="Downloads\Implementation\DownloadedFile.cs" />
+    <Compile Include="Downloads\Implementation\Downloader.cs" />
+    <Compile Include="Downloads\Interfaces\IDownloadedFile.cs" />
+    <Compile Include="Downloads\Interfaces\IDownloader.cs" />
+    <Compile Include="Implementation\FileBase.cs" />
+    <Compile Include="Implementation\FileType.cs" />
+    <Compile Include="Implementation\StorageBase.cs" />
+    <Compile Include="Interfaces\IFile.cs" />
+    <Compile Include="RemoteStorageDomainFactories.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Uploads\Implementation\UploadedFile.cs" />
+    <Compile Include="Uploads\Implementation\Uploader.cs" />
+    <Compile Include="Uploads\Interfaces\IUploadedFile.cs" />
+    <Compile Include="Uploads\Interfaces\IUploader.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)..\..\DLLs\Devebropers\$(Configuration)" />
+    
+    
+  </Target>
+</Project>

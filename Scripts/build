@@ -1,0 +1,42 @@
+xbuild /p:Configuration=$1  "../Assemblies/Validation/Devebropers.Validation/Devebropers.Validation.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Masking/Devebropers.Masking/Devebropers.Masking.csproj"
+
+xbuild /p:Configuration=$1  "../Assemblies/Common/Devebropers.Common/Devebropers.Common.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Domains/Devebropers.Domains/Devebropers.Domains.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Location/Devebropers.Location/Devebropers.Location.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Users/Devebropers.Users/Devebropers.Users.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Random/Devebropers.Random/Devebropers.Random.csproj"
+
+xbuild /p:Configuration=$1  "../Assemblies/Firebase/Devebropers.Firebase.Analytics/Devebropers.Firebase.Analytics.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Diagnostics/Devebropers.Diagnostics/Devebropers.Diagnostics.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Diagnostics/Devebropers.Diagnostics.Events/Devebropers.Diagnostics.Events.csproj"
+
+xbuild /p:Configuration=$1  "../Assemblies/Firebase/Devebropers.Firebase.Database/Devebropers.Firebase.Database.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Data/Devebropers.Data/Devebropers.Data.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Data/Devebropers.Data.Entities/Devebropers.Data.Entities.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Data/Devebropers.Data.Persistance/Devebropers.Data.Persistance.csproj"
+
+xbuild /p:Configuration=$1  "../Assemblies/Firebase/Devebropers.Firebase.Settings/Devebropers.Firebase.Settings.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Settings/Devebropers.Settings/Devebropers.Settings.csproj"
+
+xbuild /p:Configuration=$1  "../Assemblies/Firebase/Devebropers.Firebase.Authentication/Devebropers.Firebase.Authentication.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Authentication/Devebropers.Authentication/Devebropers.Authentication.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Authentication/Devebropers.Authentication.Diagnostics/Devebropers.Authentication.Diagnostics.csproj"
+
+xbuild /p:Configuration=$1  "../Assemblies/Firebase/Devebropers.Firebase.Messaging/Devebropers.Firebase.Messaging.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Messaging/Devebropers.Messaging/Devebropers.Messaging.csproj"
+
+xbuild /p:Configuration=$1  "../Assemblies/Firebase/Devebropers.Firebase.Storage/Devebropers.Firebase.Storage.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Storage/Devebropers.Storage.Remote/Devebropers.Storage.Remote.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Storage/Devebropers.Storage.Local/Devebropers.Storage.Local.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Storage/Devebropers.Storage/Devebropers.Storage.csproj"
+
+xbuild /p:Configuration=$1  "../Assemblies/Firebase/Devebropers.Firebase.Invites/Devebropers.Firebase.Invites.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Invites/Devebropers.Invites/Devebropers.Invites.csproj"
+
+xbuild /p:Configuration=$1  "../Assemblies/Friendship/Devebropers.Friendship/Devebropers.Friendship.csproj"
+xbuild /p:Configuration=$1  "../Assemblies/Friendship/Devebropers.Friendship.Diagnostics/Devebropers.Friendship.Diagnostics.csproj"
+
+xbuild /p:Configuration=$1  "../Assemblies/Nonce/Devebropers.Nonce/Devebropers.Nonce.csproj"
+
+xbuild /p:Configuration=$1  "../Assemblies/I18n/Devebropers.I18n/Devebropers.I18n.csproj"

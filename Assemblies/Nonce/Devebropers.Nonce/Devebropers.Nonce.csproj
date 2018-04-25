@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{02D31B69-BA00-442F-92B5-1F2CB076CDDC}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Devebropers.Nonce</RootNamespace>
+    <AssemblyName>Devebropers.Nonce</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Devebropers.Nonce.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DocumentationFile>bin\Release\Devebropers.Nonce.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Firebase.Database">
+      <HintPath>..\..\DLLs\3rd Party\Firebase\Firebase.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Reactive.Core" />
+    <Reference Include="System.Reactive.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Devebropers.Common\Devebropers.Common.csproj" />
+    <ProjectReference Include="..\..\Domains\Devebropers.Domains\Devebropers.Domains.csproj" />
+    <ProjectReference Include="..\..\Firebase\Devebropers.Firebase.Database\Devebropers.Firebase.Database.csproj" />
+    <ProjectReference Include="..\..\Data\Devebropers.Data\Devebropers.Data.csproj" />
+    <ProjectReference Include="..\..\Data\Devebropers.Data.Entities\Devebropers.Data.Entities.csproj" />
+    <ProjectReference Include="..\..\Data\Devebropers.Data.Persistance\Devebropers.Data.Persistance.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Exceptions\NonceException.cs" />
+    <Compile Include="Implementation\NonceRedeemer.cs" />
+    <Compile Include="Implementation\NonceTokenGenerator.cs" />
+    <Compile Include="Interfaces\INonceTokenGenerator.cs" />
+    <Compile Include="Interfaces\ITokenable.cs" />
+    <Compile Include="NonceDatabaseReferences.cs" />
+    <Compile Include="Entities\Implementation\NonceEntity.cs" />
+    <Compile Include="Entities\Implementation\NonceEntityFactory.cs" />
+    <Compile Include="Entities\Implementation\NonceModel.cs" />
+    <Compile Include="Entities\Interfaces\INonceEntity.cs" />
+    <Compile Include="Entities\Interfaces\INonceEntityFactory.cs" />
+    <Compile Include="Implementation\Nonce.cs" />
+    <Compile Include="Implementation\NonceFactory.cs" />
+    <Compile Include="Interfaces\INonce.cs" />
+    <Compile Include="Interfaces\INonceFactory.cs" />
+    <Compile Include="Interfaces\INonceRedeemer.cs" />
+    <Compile Include="NonceDomainFactories.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)..\..\DLLs\Devebropers\$(Configuration)" />
+  </Target>
+</Project>

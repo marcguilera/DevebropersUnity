@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4AD6148F-7701-4CEA-85CB-179EEDA3639F}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Devebropers.Diagnostics.Events</RootNamespace>
+    <AssemblyName>Devebropers.Diagnostics.Events</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Devebropers.Common\Devebropers.Common.csproj" />
+    <ProjectReference Include="..\Devebropers.Diagnostics\Devebropers.Diagnostics.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Authentication\AuthEventBase.cs" />
+    <Compile Include="Authentication\SignUpAttemptEvent.cs" />
+    <Compile Include="Authentication\SignInAttemptEvent.cs" />
+    <Compile Include="Authentication\SignUpErrorEvent.cs" />
+    <Compile Include="Authentication\SignInErrorEvent.cs" />
+    <Compile Include="Authentication\SignUpSuccessEvent.cs" />
+    <Compile Include="Authentication\SignInSuccessEvent.cs" />
+    <Compile Include="Authentication\SignOutEvent.cs" />
+    <Compile Include="Friendship\FriendRequestSentEvent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\SettingsUpdaterUpdateAttemptEvent.cs" />
+    <Compile Include="Settings\SettingsUpdaterUpdateErrorEvent.cs" />
+    <Compile Include="Settings\SettingsUpdaterStopEvent.cs" />
+    <Compile Include="Settings\SettingsUpdaterStartEvent.cs" />
+    <Compile Include="Settings\SettingsUpdaterUpdateSuccessEvent.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)..\..\DLLs\Devebropers\$(Configuration)" />
+    
+    
+  </Target>
+</Project>

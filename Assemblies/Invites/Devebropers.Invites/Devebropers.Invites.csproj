@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{62339E78-4587-4D73-B001-1FC3FE7A3F63}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Devebropers.Invites</RootNamespace>
+    <AssemblyName>Devebropers.Invites</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Devebropers.Invites.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DocumentationFile>bin\Release\Devebropers.Invites.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Firebase.Invites">
+      <HintPath>..\..\DLLs\3rd Party\Firebase\Firebase.Invites.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Reactive.Core" />
+    <Reference Include="System.Reactive.Linq" />
+    <Reference Include="System.Reactive.Interfaces" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Devebropers.Common\Devebropers.Common.csproj" />
+    <ProjectReference Include="..\..\Domains\Devebropers.Domains\Devebropers.Domains.csproj" />
+    <ProjectReference Include="..\..\Firebase\Devebropers.Firebase.Invites\Devebropers.Firebase.Invites.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Implementation\InviteConverter.cs" />
+    <Compile Include="Implementation\InviteFactory.cs" />
+    <Compile Include="Implementation\InvitesBase.cs" />
+    <Compile Include="Implementation\InviteSender.cs" />
+    <Compile Include="Interfaces\IInviteConverter.cs" />
+    <Compile Include="Interfaces\IInviteFactory.cs" />
+    <Compile Include="Interfaces\IInviteSender.cs" />
+    <Compile Include="InvitesDomainFactories.cs" />
+    <Compile Include="Invites\Implementation\InviteBase.cs" />
+    <Compile Include="Invites\Implementation\ReceivedInvite.cs" />
+    <Compile Include="Invites\Implementation\SendableInvite.cs" />
+    <Compile Include="Invites\Implementation\SentInvite.cs" />
+    <Compile Include="Invites\Interfaces\IInvite.cs" />
+    <Compile Include="Invites\Interfaces\ISentInvite.cs" />
+    <Compile Include="Invites\Interfaces\IReceivedInvite.cs" />
+    <Compile Include="Invites\Interfaces\ISendableInvite.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ProjectDir)..\..\DLLs\Devebropers\$(Configuration)" />
+    
+    
+  </Target>
+</Project>
